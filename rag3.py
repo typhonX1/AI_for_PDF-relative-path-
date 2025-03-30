@@ -11,9 +11,9 @@ GOOGLE_API_KEY = "AIzaSyDEbMTwl6pvaODmLCIuaszVZJe3J_R3lBA"
 os.environ["GOOGLE_API_KEY"] = GOOGLE_API_KEY
 
 # Streamlit UI
-st.set_page_config(page_title="📄 AI PDF Q&A", layout="wide")
-st.title("📄 AI PDF Question Answering System")
-st.markdown("Process a PDF and ask questions!")
+st.set_page_config(page_title="Q&A", layout="wide")
+st.title("PIZZARIA")
+st.markdown("Ask queries!")
 
 # Specify the PDF path (modify this)
 pdf_path = "orders_data_merged.pdf"  # ⬅️ Change this to your actual file path
@@ -31,7 +31,7 @@ if os.path.exists(pdf_path):
     llm = ChatGoogleGenerativeAI(model="gemini-1.5-pro-latest", temperature=0.2)
     qa_chain = RetrievalQA.from_chain_type(llm=llm, retriever=vectorstore.as_retriever(), chain_type="stuff")
 
-    user_question = st.text_input("🔎 Ask a question from the PDF:")
+    user_question = st.text_input("🔎 Ask a question from the database:")
 
     if user_question:
         answer = qa_chain.run(user_question)
